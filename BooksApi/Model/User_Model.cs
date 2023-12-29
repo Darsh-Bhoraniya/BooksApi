@@ -9,6 +9,6 @@
         public string Password { get; set; }
         public int RoleID { get; set; }
         public DateTime Created { get; set; }
-        public DateTime Modified { get; set; }
+        public DateTime Modified { get; set; }  
     }
 }
