@@ -8,6 +8,8 @@ namespace BooksApi.BAL
 {
     public class AddBook_BALBase:DAL_Helper
     {
+        AddBook_DALBase AddBook_DALBase = new AddBook_DALBase();
+
         #region select all
         public List<AddBook_Model> GetAllBoooks()
         {
@@ -24,6 +26,30 @@ namespace BooksApi.BAL
 
             }
         }
+        #endregion
+        #region insert
+
+        public bool PR_Insert_Books(AddBook_Model addBook_Model)
+
+        {
+            try
+            {
+
+                if (AddBook_DALBase.PR_Insert_Books(addBook_Model))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         #endregion
     }
 }

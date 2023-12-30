@@ -2,7 +2,7 @@
 
 namespace BooksApi.BAL
 {
-    public class User_Base: DAL_Helper
+    public class User_BALBase: DAL_Helper
     {
 
     }

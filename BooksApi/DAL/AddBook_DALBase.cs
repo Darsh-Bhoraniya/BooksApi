@@ -54,7 +54,14 @@ namespace BooksApi.DAL
                 DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_Book_Master_Insert");
                 sqlDatabase.AddInParameter(dbCommand, "@BookName", SqlDbType.VarChar, AddBook_Model.BookName);
                 sqlDatabase.AddInParameter(dbCommand, "@BookTitle", SqlDbType.VarChar, AddBook_Model.BookTitle);
-                sqlDatabase.AddInParameter(dbCommand, "@Email", SqlDbType.VarChar, AddBook_Model.);
+                sqlDatabase.AddInParameter(dbCommand, "@BooKWiseAuthorID", SqlDbType.Int, AddBook_Model.BookWiseAuthorID);
+                sqlDatabase.AddInParameter(dbCommand, "@TypeID", SqlDbType.VarChar, AddBook_Model.TypeID);
+                sqlDatabase.AddInParameter(dbCommand, "@Price", SqlDbType.Decimal, AddBook_Model.Price);
+                sqlDatabase.AddInParameter(dbCommand, "@INSBN", SqlDbType.Int, AddBook_Model.INSBN);
+                sqlDatabase.AddInParameter(dbCommand, "@PublishedDate", SqlDbType.DateTime, AddBook_Model.PublishedDate);
+                sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, AddBook_Model.Created);
+                sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, AddBook_Model.Modified);
+
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
                 {
                     return true;
@@ -68,7 +75,37 @@ namespace BooksApi.DAL
             {
                 return false;
             }
-
-
+        }
+        #endregion
+        public bool PR_Update_Books(int PersonId, AddBook_Model AddBook_Model)
+        {
+            try
+            {
+                SqlDatabase sqlDatabase = new SqlDatabase(ConnString);
+                DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_Book_Master_Update");
+                sqlDatabase.AddInParameter(dbCommand, "@BookName", SqlDbType.VarChar, AddBook_Model.BookName);
+                sqlDatabase.AddInParameter(dbCommand, "@BookTitle", SqlDbType.VarChar, AddBook_Model.BookTitle);
+                sqlDatabase.AddInParameter(dbCommand, "@BooKWiseAuthorID", SqlDbType.Int, AddBook_Model.BookWiseAuthorID);
+                sqlDatabase.AddInParameter(dbCommand, "@TypeID", SqlDbType.VarChar, AddBook_Model.TypeID);
+                sqlDatabase.AddInParameter(dbCommand, "@Price", SqlDbType.Decimal, AddBook_Model.Price);
+                sqlDatabase.AddInParameter(dbCommand, "@INSBN", SqlDbType.Int, AddBook_Model.INSBN);
+                sqlDatabase.AddInParameter(dbCommand, "@PublishedDate", SqlDbType.DateTime, AddBook_Model.PublishedDate);
+                // Update time we donot to add a parameter created
+                sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, AddBook_Model.Created);
+                sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, AddBook_Model.Modified);
+                if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
+}
