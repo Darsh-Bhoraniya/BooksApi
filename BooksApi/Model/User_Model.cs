@@ -1,4 +1,6 @@
-﻿namespace BooksApi.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BooksApi.Model
 {
     public class User_Model
     {

@@ -75,6 +75,31 @@ namespace BooksApi.BAL
         }
 
         #endregion
+
+        #region insert
+
+        public bool PR_Delete_Books(int BookID)
+
+        {
+            try
+            {
+
+                if (AddBook_DALBase.PR_Delete_Books(BookID))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
     }
 }
 

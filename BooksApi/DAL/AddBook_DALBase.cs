@@ -45,6 +45,31 @@ namespace BooksApi.DAL
         }
         #endregion
 
+        #region Delete
+        public bool PR_Delete_Books(int BookID)
+        {
+            try
+            {
+                SqlDatabase sqlDatabase = new SqlDatabase(ConnString);
+                DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_Book_Master_DeleteByPK");
+                sqlDatabase.AddInParameter(dbCommand, "@BookID", SqlDbType.Int, BookID);
+                if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        #endregion
+
         #region Insert
         public bool PR_Insert_Books(AddBook_Model AddBook_Model)
         {

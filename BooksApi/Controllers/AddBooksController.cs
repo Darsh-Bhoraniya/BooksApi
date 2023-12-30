@@ -36,6 +36,27 @@ namespace BooksApi.Controllers
         }
         #endregion
 
+        #region Delete
+        [HttpDelete]
+        public IActionResult Delete(int BookID)
+        {
+            bool IsSuccess = AddBook_BALBas.PR_Delete_Books(BookID);
+            Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
+            if (IsSuccess)
+            {
+                respon.Add("status", true);
+                respon.Add("Message", "Data Deleted Succesfuly");
+                return Ok(respon);
+            }
+            else
+            {
+                respon.Add("status", false);
+                respon.Add("Message", "Data not Deleted");
+                return NotFound(respon);
+            }
+        }
+        #endregion
+
 
         #region Insert
         [HttpPost]
