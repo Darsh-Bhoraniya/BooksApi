@@ -77,12 +77,13 @@ namespace BooksApi.DAL
             }
         }
         #endregion
-        public bool PR_Update_Books(int PersonId, AddBook_Model AddBook_Model)
+        public bool PR_Update_Books(int BookID, AddBook_Model AddBook_Model)
         {
             try
             {
                 SqlDatabase sqlDatabase = new SqlDatabase(ConnString);
                 DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_Book_Master_Update");
+                sqlDatabase.AddInParameter(dbCommand, "@BookID", SqlDbType.Int, AddBook_Model.BookID);
                 sqlDatabase.AddInParameter(dbCommand, "@BookName", SqlDbType.VarChar, AddBook_Model.BookName);
                 sqlDatabase.AddInParameter(dbCommand, "@BookTitle", SqlDbType.VarChar, AddBook_Model.BookTitle);
                 sqlDatabase.AddInParameter(dbCommand, "@BooKWiseAuthorID", SqlDbType.Int, AddBook_Model.BookWiseAuthorID);
@@ -91,7 +92,7 @@ namespace BooksApi.DAL
                 sqlDatabase.AddInParameter(dbCommand, "@INSBN", SqlDbType.Int, AddBook_Model.INSBN);
                 sqlDatabase.AddInParameter(dbCommand, "@PublishedDate", SqlDbType.DateTime, AddBook_Model.PublishedDate);
                 // Update time we donot to add a parameter created
-                sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, AddBook_Model.Created);
+                //sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, AddBook_Model.Created);
                 sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, AddBook_Model.Modified);
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
                 {

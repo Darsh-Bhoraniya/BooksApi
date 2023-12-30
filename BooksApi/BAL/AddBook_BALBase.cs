@@ -51,5 +51,30 @@ namespace BooksApi.BAL
         }
 
         #endregion
+        #region insert
+
+        public bool PR_Update_Books(int BookID,AddBook_Model addBook_Model)
+
+        {
+            try
+            {
+
+                if (AddBook_DALBase.PR_Update_Books(BookID,addBook_Model))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
     }
 }
+
