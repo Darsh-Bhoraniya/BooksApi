@@ -1,4 +1,5 @@
 ﻿using BooksApi.BAL;
+using BooksApi.DAL;
 using BooksApi.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +31,30 @@ namespace BooksApi.Controllers
             {
                 respon.Add("status", false);
                 respon.Add("Message", "Users not found");
+                respon.Add("data", null);
+            }
+            return NotFound(respon);
+        }
+        #endregion
+
+        #region Getbyid
+
+        [HttpGet("{UserID}")]
+        public IActionResult GetById(int UserID)
+        {
+            User_Model User_Model = User_BALBase.User_SelectByPK(UserID);
+            Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
+            if (User_Model.UserID != 0)
+            {
+                respon.Add("status", true);
+                respon.Add("Message", "Data found");
+                respon.Add("data", User_Model);
+                return Ok(respon);
+            }
+            else
+            {
+                respon.Add("status", false);
+                respon.Add("Message", "Data not found");
                 respon.Add("data", null);
             }
             return NotFound(respon);

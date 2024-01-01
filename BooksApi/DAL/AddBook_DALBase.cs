@@ -3,6 +3,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using System.Data.Common;
 using System.Data;
 using BooksApi.Model;
+using System.Net;
 
 namespace BooksApi.DAL
 {
@@ -45,6 +46,40 @@ namespace BooksApi.DAL
         }
         #endregion
 
+        #region selectbypk
+        public AddBook_Model Book_SelectByPK(int BookID)
+        {
+            try
+            {
+                SqlDatabase sqlDatabase = new SqlDatabase(ConnString);
+                DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_Book_Master_SelectByPK");
+                sqlDatabase.AddInParameter(dbCommand, "@BookID", SqlDbType.Int, BookID);
+                AddBook_Model AddBook_Model = new AddBook_Model();
+                using (IDataReader dr = sqlDatabase.ExecuteReader(dbCommand))
+                {
+                    while (dr.Read())
+                    {
+                        AddBook_Model.BookID = Convert.ToInt32(dr["BookID"].ToString());
+                        AddBook_Model.BookName = dr["BookName"].ToString();
+                        AddBook_Model.BookTitle = dr["BookTitle"].ToString();
+                        AddBook_Model.BookWiseAuthorID = Convert.ToInt32(dr["BooKWiseAuthorID"].ToString());
+                        AddBook_Model.TypeID = Convert.ToInt32(dr["TypeID"].ToString());
+                        AddBook_Model.Price = Convert.ToDouble(dr["Price"].ToString());
+                        AddBook_Model.INSBN = Convert.ToInt32(dr["INSBN"].ToString());
+                        AddBook_Model.PublishedDate = Convert.ToDateTime(dr["PublishedDate"]);
+                        AddBook_Model.Created = Convert.ToDateTime(dr["Created"]);
+                        AddBook_Model.Modified = Convert.ToDateTime(dr["Modified"]);
+                    }
+                }
+                return AddBook_Model;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+        #endregion
         #region Delete
         public bool PR_Delete_Books(int BookID)
         {

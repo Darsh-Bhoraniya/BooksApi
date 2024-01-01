@@ -27,6 +27,25 @@ namespace BooksApi.BAL
             }
         }
         #endregion
+
+        #region selectbypk
+        public AddBook_Model Books_SelectByPK(int BookID)
+        {
+            try
+            {
+                AddBook_DALBase AddBook_DALBase = new AddBook_DALBase();
+                AddBook_Model AddBook_Model = AddBook_DALBase.Book_SelectByPK(BookID);
+                return AddBook_Model;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+        #endregion
+
         #region insert
 
         public bool PR_Insert_Books(AddBook_Model addBook_Model)

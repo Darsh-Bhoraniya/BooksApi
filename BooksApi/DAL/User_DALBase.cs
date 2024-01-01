@@ -70,6 +70,38 @@ namespace BooksApi.DAL
         }
         #endregion
 
+        #region selectbypk
+        public User_Model User_SelectByPK(int UserID)
+        {
+            try
+            {
+                SqlDatabase sqlDatabase = new SqlDatabase(ConnString);
+                DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_User_SelectByPK");
+                sqlDatabase.AddInParameter(dbCommand, "@UserID", SqlDbType.Int, UserID);
+                User_Model User_Model = new User_Model();
+                using (IDataReader dr = sqlDatabase.ExecuteReader(dbCommand))
+                {
+                    while (dr.Read())
+                    {
+                        User_Model.UserID = Convert.ToInt32(dr["UserID"].ToString());
+                        User_Model.UserName = dr["UserName"].ToString();
+                        User_Model.Email = dr["Email"].ToString();
+                        User_Model.Password = (dr["Password"].ToString());
+                        User_Model.RoleID = Convert.ToInt32(dr["RoleID"].ToString());
+                        User_Model.Created = Convert.ToDateTime(dr["Created"]); ;
+                        User_Model.Modified = Convert.ToDateTime(dr["Modified"]); ;
+                    }
+                }
+                return User_Model;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+        #endregion
+
         #region Insert/ Register Users
         public bool RegisterNewUser(User_Model User_Model)
         {

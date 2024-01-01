@@ -1,6 +1,7 @@
 ﻿using BooksApi.BAL;
 using BooksApi.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace BooksApi.Controllers
 {
@@ -35,6 +36,28 @@ namespace BooksApi.Controllers
             return NotFound(respon);
         }
         #endregion
+        #region Select by Pk
+        [HttpGet("{BookID}")]
+        public IActionResult GetById(int BookID)
+        {
+            AddBook_Model AddBook_Model = AddBook_BALBas.Books_SelectByPK(BookID);
+            Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
+            if (AddBook_Model.BookID != 0)
+            {
+                respon.Add("status", true);
+                respon.Add("Message", "Data found");
+                respon.Add("data", AddBook_Model);
+                return Ok(respon);
+            }
+            else
+            {
+                respon.Add("status", false);
+                respon.Add("Message", "Data not found");
+                respon.Add("data", null);
+            }
+            return NotFound(respon);
+        }
+#endregion
 
         #region Delete
         [HttpDelete]

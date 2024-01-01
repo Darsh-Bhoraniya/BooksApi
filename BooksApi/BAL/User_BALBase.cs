@@ -23,6 +23,25 @@ namespace BooksApi.BAL
             }
         }
         #endregion
+
+        #region selectbypk
+        public User_Model User_SelectByPK(int UserID)
+        {
+            try
+            {
+                User_DALBase User_DALBase = new User_DALBase();
+                User_Model User_Model = User_DALBase.User_SelectByPK(UserID);
+                return User_Model;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+        #endregion
+
         #region insert
 
         public bool RegisterNewUser(User_Model User_Model)
