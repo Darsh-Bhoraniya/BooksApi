@@ -6,8 +6,8 @@ using System.Net;
 namespace BooksApi.Controllers
 {
     [ApiController]
-    [Route("api/[Controller]")]
-    public class AddBooksController : Controller
+    [Route("api/[Controller]/[Action]")]
+    public class BooksController : Controller
     {
         #region Globalobject Of BAL
         Book_BALBase AddBook_BALBas = new Book_BALBase();

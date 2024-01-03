@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BooksApi.Controllers
 {
     [ApiController]
-    [Route("api/[Controller]")]
+    [Route("api/[Controller]/[Action]")]
     public class UserController : Controller
     {
         #region Globalobject Of BAL
