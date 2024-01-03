@@ -10,7 +10,7 @@ namespace BooksApi.Controllers
     public class AddBooksController : Controller
     {
         #region Globalobject Of BAL
-        AddBook_BALBase AddBook_BALBas = new AddBook_BALBase();
+        Book_BALBase AddBook_BALBas = new Book_BALBase();
         #endregion
 
         #region Getall
@@ -18,7 +18,7 @@ namespace BooksApi.Controllers
         public IActionResult Getall()
         {
 
-            List<AddBook_Model> book_Models = AddBook_BALBas.GetAllBoooks();
+            List<Book_Model> book_Models = AddBook_BALBas.GetAllBoooks();
             Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
             if (book_Models.Count > 0 && book_Models != null)
             {
@@ -40,7 +40,7 @@ namespace BooksApi.Controllers
         [HttpGet("{BookID}")]
         public IActionResult GetById(int BookID)
         {
-            AddBook_Model AddBook_Model = AddBook_BALBas.Books_SelectByPK(BookID);
+            Book_Model AddBook_Model = AddBook_BALBas.Books_SelectByPK(BookID);
             Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
             if (AddBook_Model.BookID != 0)
             {
@@ -83,7 +83,7 @@ namespace BooksApi.Controllers
 
         #region Insert
         [HttpPost]
-        public IActionResult Post([FormForm] AddBook_Model addBook_Model)
+        public IActionResult Post([FormForm] Book_Model addBook_Model)
         {
             bool IsSuccess = AddBook_BALBas.PR_Insert_Books(addBook_Model);
             Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
@@ -103,7 +103,7 @@ namespace BooksApi.Controllers
         #endregion
         #region Update
         [HttpPut]
-        public IActionResult Update(int BookID,[FormForm] AddBook_Model addBook_Model)
+        public IActionResult Update(int BookID,[FormForm] Book_Model addBook_Model)
         {
             addBook_Model.BookID=BookID;
             bool IsSuccess = AddBook_BALBas.PR_Update_Books(BookID, addBook_Model);

@@ -7,21 +7,21 @@ using System.Net;
 
 namespace BooksApi.DAL
 {
-    public class AddBook_DALBase : DAL_Helper
+    public class Book_DALBase : DAL_Helper
     {
         #region AddBook
-        public List<AddBook_Model> GetallBook()
+        public List<Book_Model> GetallBook()
         {
             try
             {
                 SqlDatabase sqlDatabase = new SqlDatabase(ConnString);
                 DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_Book_Master_SelectAll");
-                List<AddBook_Model> Bookmodel = new List<AddBook_Model>();
+                List<Book_Model> Bookmodel = new List<Book_Model>();
                 using (IDataReader dr = sqlDatabase.ExecuteReader(dbCommand))
                 {
                     while (dr.Read())
                     {
-                        AddBook_Model book_Model = new AddBook_Model();
+                        Book_Model book_Model = new Book_Model();
                         book_Model.BookID = Convert.ToInt32(dr["BookID"].ToString());
                         book_Model.BookName = dr["BookName"].ToString();
                         book_Model.BookTitle = dr["BookTitle"].ToString();
@@ -47,14 +47,14 @@ namespace BooksApi.DAL
         #endregion
 
         #region selectbypk
-        public AddBook_Model Book_SelectByPK(int BookID)
+        public Book_Model Book_SelectByPK(int BookID)
         {
             try
             {
                 SqlDatabase sqlDatabase = new SqlDatabase(ConnString);
                 DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_Book_Master_SelectByPK");
                 sqlDatabase.AddInParameter(dbCommand, "@BookID", SqlDbType.Int, BookID);
-                AddBook_Model AddBook_Model = new AddBook_Model();
+                Book_Model AddBook_Model = new Book_Model();
                 using (IDataReader dr = sqlDatabase.ExecuteReader(dbCommand))
                 {
                     while (dr.Read())
@@ -106,7 +106,7 @@ namespace BooksApi.DAL
         #endregion
 
         #region Insert
-        public bool PR_Insert_Books(AddBook_Model AddBook_Model)
+        public bool PR_Insert_Books(Book_Model AddBook_Model)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace BooksApi.DAL
             }
         }
         #endregion
-        public bool PR_Update_Books(int BookID, AddBook_Model AddBook_Model)
+        public bool PR_Update_Books(int BookID, Book_Model AddBook_Model)
         {
             try
             {

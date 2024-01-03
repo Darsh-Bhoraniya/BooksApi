@@ -6,17 +6,17 @@ using System.Data;
 
 namespace BooksApi.BAL
 {
-    public class AddBook_BALBase:DAL_Helper
+    public class Book_BALBase:DAL_Helper
     {
-        AddBook_DALBase AddBook_DALBase = new AddBook_DALBase();
+        Book_DALBase AddBook_DALBase = new Book_DALBase();
 
         #region select all
-        public List<AddBook_Model> GetAllBoooks()
+        public List<Book_Model> GetAllBoooks()
         {
             try
             {
-                AddBook_DALBase AddBook_DALBase = new AddBook_DALBase();
-                List<AddBook_Model> book_Models = AddBook_DALBase.GetallBook();
+                Book_DALBase AddBook_DALBase = new Book_DALBase();
+                List<Book_Model> book_Models = AddBook_DALBase.GetallBook();
                 return book_Models;
 
             }
@@ -29,12 +29,12 @@ namespace BooksApi.BAL
         #endregion
 
         #region selectbypk
-        public AddBook_Model Books_SelectByPK(int BookID)
+        public Book_Model Books_SelectByPK(int BookID)
         {
             try
             {
-                AddBook_DALBase AddBook_DALBase = new AddBook_DALBase();
-                AddBook_Model AddBook_Model = AddBook_DALBase.Book_SelectByPK(BookID);
+                Book_DALBase AddBook_DALBase = new Book_DALBase();
+                Book_Model AddBook_Model = AddBook_DALBase.Book_SelectByPK(BookID);
                 return AddBook_Model;
 
             }
@@ -48,7 +48,7 @@ namespace BooksApi.BAL
 
         #region insert
 
-        public bool PR_Insert_Books(AddBook_Model addBook_Model)
+        public bool PR_Insert_Books(Book_Model addBook_Model)
 
         {
             try
@@ -72,7 +72,7 @@ namespace BooksApi.BAL
         #endregion
         #region insert
 
-        public bool PR_Update_Books(int BookID,AddBook_Model addBook_Model)
+        public bool PR_Update_Books(int BookID,Book_Model addBook_Model)
 
         {
             try

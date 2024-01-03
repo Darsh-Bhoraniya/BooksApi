@@ -1,6 +1,6 @@
 ﻿namespace BooksApi.Model
 {
-    public class AddBook_Model
+    public class Book_Model
     {
         public int BookID { get; set; }
         public string BookName { get; set; }
