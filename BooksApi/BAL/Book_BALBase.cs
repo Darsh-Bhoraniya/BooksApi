@@ -6,7 +6,7 @@ using System.Data;
 
 namespace BooksApi.BAL
 {
-    public class Book_BALBase:DAL_Helper
+    public class Book_BALBase
     {
         Book_DALBase AddBook_DALBase = new Book_DALBase();
 
@@ -70,7 +70,8 @@ namespace BooksApi.BAL
         }
 
         #endregion
-        #region insert
+
+        #region Update
 
         public bool PR_Update_Books(int BookID,Book_Model addBook_Model)
 
@@ -95,7 +96,7 @@ namespace BooksApi.BAL
 
         #endregion
 
-        #region insert
+        #region Delete
 
         public bool PR_Delete_Books(int BookID)
 

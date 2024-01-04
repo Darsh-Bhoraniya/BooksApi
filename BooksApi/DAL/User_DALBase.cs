@@ -16,7 +16,6 @@ namespace BooksApi.DAL
         {
             try
             {
-                SqlDatabase sqlDatabase = new SqlDatabase(ConnString);
                 DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_User_SelectAll");
                 List<User_Model> Bookmodel = new List<User_Model>();
                 using (IDataReader dr = sqlDatabase.ExecuteReader(dbCommand))
@@ -75,7 +74,6 @@ namespace BooksApi.DAL
         {
             try
             {
-                SqlDatabase sqlDatabase = new SqlDatabase(ConnString);
                 DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_User_SelectByPK");
                 sqlDatabase.AddInParameter(dbCommand, "@UserID", SqlDbType.Int, UserID);
                 User_Model User_Model = new User_Model();
@@ -136,7 +134,6 @@ namespace BooksApi.DAL
         {
             try
             {
-                SqlDatabase sqlDatabase = new SqlDatabase(ConnString);
                 DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_Book_Master_Update");
                 sqlDatabase.AddInParameter(dbCommand, "@UserID", SqlDbType.Int, User_Model.UserID);
                 sqlDatabase.AddInParameter(dbCommand, "@UserName", SqlDbType.VarChar, User_Model.UserName);
