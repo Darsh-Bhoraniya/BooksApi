@@ -3,18 +3,27 @@ using BooksApi.Model;
 
 namespace BooksApi.BAL
 {
-    public class User_BALBase: DAL_Helper
+    public class Author_BALBase
     {
-        User_DALBase User_DALBase = new User_DALBase();
-
-        #region select all
-        public List<User_Model> GetAllUser()
+        Author_DALBase author_DALBase = new Author_DALBase ();
+        public List<Author_Model> Getall()
         {
             try
             {
-                List<User_Model> user_Models = User_DALBase.GetallUser();
-                return user_Models;
-
+                List<Author_Model> author_Models = author_DALBase.Getall();
+                return author_Models;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public Author_Model SelectAuthorByPK(int AuthorID)
+        {
+            try
+            {
+                Author_Model author_Model = author_DALBase.SelectAuthorByPk(AuthorID);
+                return author_Model;
             }
             catch (Exception ex)
             {
@@ -22,35 +31,11 @@ namespace BooksApi.BAL
 
             }
         }
-        #endregion
-
-        #region selectbypk
-        public User_Model User_SelectByPK(int UserID)
+        public bool InsertAuthor(Author_Model author_Model)
         {
             try
             {
-                User_DALBase User_DALBase = new User_DALBase();
-                User_Model User_Model = User_DALBase.User_SelectByPK(UserID);
-                return User_Model;
-
-            }
-            catch (Exception ex)
-            {
-                return null;
-
-            }
-        }
-        #endregion
-
-        #region insert
-
-        public bool RegisterNewUser(User_Model User_Model)
-
-        {
-            try
-            {
-
-                if (User_DALBase.RegisterNewUser(User_Model))
+                if (author_DALBase.InsertAuthor(author_Model))
                 {
                     return true;
                 }
@@ -65,16 +50,31 @@ namespace BooksApi.BAL
             }
         }
 
-        #endregion
-        #region Update
-
-        public bool Update_User(int BookID, User_Model User_Model)
-
+        public bool UpdateAuthor(int AuthorID, Author_Model author_Model)
         {
             try
             {
+                if (author_DALBase.UpdateAuthor(AuthorID,author_Model))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
-                if (User_DALBase.Update_User(BookID, User_Model))
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteAuthor(int AuthorID)
+        {
+            try
+            {
+                if (author_DALBase.DeleteAuthor(AuthorID))
                 {
                     return true;
                 }
@@ -88,32 +88,5 @@ namespace BooksApi.BAL
                 return false;
             }
         }
-
-        #endregion
-
-        #region insert
-
-        public bool Delete_User(int BookID)
-
-        {
-            try
-            {
-
-                if (User_DALBase.Delete_User(BookID))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        #endregion
     }
 }

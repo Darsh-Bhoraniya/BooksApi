@@ -1,28 +1,25 @@
 ﻿using BooksApi.BAL;
 using BooksApi.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 
 namespace BooksApi.Controllers
 {
-
     [ApiController]
     [Route("api/[Controller]/[Action]")]
-    public class RoleController : Controller
+    public class AuthorController : Controller
     {
-        #region Global Object BalBase
-        Role_BALBase Role_BALBase = new Role_BALBase();
-        #endregion
-        #region Select All
+        Author_BALBase author_BALBase = new Author_BALBase();
         [HttpGet]
         public IActionResult Getall()
         {
-            List<Role_Model> role_Models = Role_BALBase.Getall();
+            List<Author_Model> author_Models = author_BALBase.Getall();
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
-            if (role_Models.Count > 0 && role_Models != null)
+            if (author_Models.Count > 0 && author_Models != null)
             {
                 response.Add("Status", true);
                 response.Add("Masseage", "Data Get Succesfully ");
-                response.Add("Data", role_Models);
+                response.Add("Data", author_Models);
                 return Ok(response);
             }
             else
@@ -33,18 +30,19 @@ namespace BooksApi.Controllers
             }
             return NotFound(response);
         }
-        #endregion
-        #region Select By Pk
-        [HttpGet("{RoleID}")]
-        public IActionResult SelectByPK(int RoleID)
+
+
+        [HttpGet("AuthorID")]
+        public IActionResult AuthorGetbId(int AuthorID)
         {
-            Role_Model role_Models = Role_BALBase.SelectRoleByPK(RoleID);
+
+            Author_Model author_Model = author_BALBase.SelectAuthorByPK(AuthorID);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
-            if (role_Models.RoleID !=0)
+            if (author_Model.AuthorID != 0)
             {
                 response.Add("Status", true);
                 response.Add("Masseage", "Data Get Succesfully ");
-                response.Add("Data", role_Models);
+                response.Add("Data", author_Model);
                 return Ok(response);
             }
             else
@@ -55,13 +53,11 @@ namespace BooksApi.Controllers
             }
             return NotFound(response);
         }
-        #endregion
-        #region Insert
         [HttpPost]
-        public IActionResult Post(Role_Model role_Model)
+        public IActionResult Post(Author_Model author_Model)
         {
-            bool IsSuccess = Role_BALBase.InsertNewRole(role_Model);
-            Dictionary<string,dynamic> response = new Dictionary<string,dynamic>();
+            bool IsSuccess = author_BALBase.InsertAuthor(author_Model);
+            Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {
                 response.Add("Status", true);
@@ -76,13 +72,12 @@ namespace BooksApi.Controllers
                 return NotFound(response);
             }
         }
-        #endregion
-        #region Update
         [HttpPut]
-        public IActionResult Put(int RoleID,Role_Model role_Model)
+        public IActionResult Put(Author_Model author_Model ,int AuthorID)
         {
-            role_Model.RoleID = RoleID;
-            bool IsSuccess = Role_BALBase.UpdateRole(RoleID,role_Model);
+
+            author_Model.AuthorID = AuthorID;
+            bool IsSuccess = author_BALBase.UpdateAuthor(AuthorID, author_Model);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {
@@ -98,12 +93,11 @@ namespace BooksApi.Controllers
                 return NotFound(response);
             }
         }
-        #endregion
-        #region Delete
+
         [HttpDelete]
-        public IActionResult Delete(int RoleID)
+        public IActionResult Delete(int AuthorID)
         {
-            bool IsSuccess = Role_BALBase.DeleteRole(RoleID);
+            bool IsSuccess = author_BALBase.DeleteAuthor(AuthorID);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {
@@ -119,6 +113,5 @@ namespace BooksApi.Controllers
                 return NotFound(response);
             }
         }
-        #endregion
     }
 }
