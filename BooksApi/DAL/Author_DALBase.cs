@@ -20,16 +20,16 @@ namespace BooksApi.DAL
                     while (dr.Read())
                     {
                         Author_Model author_Model = new Author_Model();
-                        author_Model.AuthorID = Convert.ToInt32(@dr["AuthorID"]);
-                        author_Model.AuthorName = @dr["AuthorName"].ToString();
-                        author_Model.AuthorEmail = @dr["AuthorEmail"].ToString();
-                        author_Model.ContactNo = @dr["ContactNo"].ToString();
-                        author_Model.Created = Convert.ToDateTime(@dr["Created"]);
-                        author_Model.Modified = Convert.ToDateTime(@dr["Modified"]);
+                        author_Model.AuthorID = Convert.ToInt32(dr["AuthorID"]);
+                        author_Model.AuthorName = dr["AuthorName"].ToString();
+                        author_Model.AuthorEmail = dr["AuthorEmail"].ToString();
+                        author_Model.ContactNo = dr["ContactNo"].ToString();
+                        author_Model.Created = Convert.ToDateTime(dr["Created"]);
+                        author_Model.Modified = Convert.ToDateTime(dr["Modified"]);
                         Author_Model.Add(author_Model);
-                    }
-                    return Author_Model;
+                      }
                 }
+                return Author_Model;
             }
             catch (Exception ex)
             {
@@ -47,12 +47,12 @@ namespace BooksApi.DAL
                 {
                     while (dr.Read())
                     {
-                        author_Model.AuthorID = Convert.ToInt32(@dr["AuthorID"]);
-                        author_Model.AuthorName = @dr["AuthorName"].ToString();
-                        author_Model.AuthorEmail = @dr["AuthorEmail"].ToString();
-                        author_Model.ContactNo = @dr["ContactNo"].ToString();
-                        author_Model.Created = Convert.ToDateTime(@dr["Created"]);
-                        author_Model.Modified = Convert.ToDateTime(@dr["Modified"]);
+                        author_Model.AuthorID = Convert.ToInt32(dr["AuthorID"]);
+                        author_Model.AuthorName = dr["AuthorName"].ToString();
+                        author_Model.AuthorEmail = dr["AuthorEmail"].ToString();
+                        author_Model.ContactNo = dr["ContactNo"].ToString();
+                        author_Model.Created = Convert.ToDateTime(dr["Created"]);
+                        author_Model.Modified = Convert.ToDateTime(dr["Modified"]);
                     }
                 }
                 return author_Model ;

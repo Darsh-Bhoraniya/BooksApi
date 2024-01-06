@@ -1,25 +1,26 @@
 ﻿using BooksApi.BAL;
 using BooksApi.Model;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
+using System;
 
 namespace BooksApi.Controllers
 {
+
     [ApiController]
     [Route("api/[Controller]/[Action]")]
-    public class AuthorController : Controller
+    public class BookTypeController : Controller
     {
-        Author_BALBase author_BALBase = new Author_BALBase();
+        BooksType_BALBase booksType_BALBase = new BooksType_BALBase();
         [HttpGet]
         public IActionResult Getall()
         {
-            List<Author_Model> author_Models = author_BALBase.Getall();
+            List<BookType_Model> bookType_Models = booksType_BALBase.Getall();
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
-            if (author_Models.Count > 0 && author_Models != null)
+            if (bookType_Models.Count > 0 && bookType_Models != null)
             {
                 response.Add("Status", true);
                 response.Add("Masseage", "Data Get Succesfully ");
-                response.Add("Data", author_Models);
+                response.Add("Data", bookType_Models);
                 return Ok(response);
             }
             else
@@ -32,17 +33,17 @@ namespace BooksApi.Controllers
         }
 
 
-        [HttpGet("{AuthorID}")]
-        public IActionResult AuthorGetbId(int AuthorID)
+        [HttpGet("{TypeID}")]
+        public IActionResult BooksTypesGetbyId(int TypeID)
         {
 
-            Author_Model author_Model = author_BALBase.SelectAuthorByPK(AuthorID);
+            BookType_Model bookType_Model = booksType_BALBase.SelectRoleByPK(TypeID);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
-            if (author_Model.AuthorID != 0)
+            if (bookType_Model.TypeID != 0)
             {
                 response.Add("Status", true);
                 response.Add("Masseage", "Data Get Succesfully ");
-                response.Add("Data", author_Model);
+                response.Add("Data", bookType_Model);
                 return Ok(response);
             }
             else
@@ -54,9 +55,9 @@ namespace BooksApi.Controllers
             return NotFound(response);
         }
         [HttpPost]
-        public IActionResult Post(Author_Model author_Model)
+        public IActionResult Post(BookType_Model bookType_Model)
         {
-            bool IsSuccess = author_BALBase.InsertAuthor(author_Model);
+            bool IsSuccess = booksType_BALBase.InsertNewRole(bookType_Model);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {
@@ -73,11 +74,11 @@ namespace BooksApi.Controllers
             }
         }
         [HttpPut]
-        public IActionResult Put(Author_Model author_Model ,int AuthorID)
+        public IActionResult Put(BookType_Model bookType_Model, int TypeID)
         {
 
-            author_Model.AuthorID = AuthorID;
-            bool IsSuccess = author_BALBase.UpdateAuthor(AuthorID, author_Model);
+            bookType_Model.TypeID = TypeID;
+            bool IsSuccess = booksType_BALBase.UpdateRole(TypeID, bookType_Model);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {
@@ -95,9 +96,9 @@ namespace BooksApi.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(int AuthorID)
+        public IActionResult Delete(int TypeID)
         {
-            bool IsSuccess = author_BALBase.DeleteAuthor(AuthorID);
+            bool IsSuccess = booksType_BALBase.DeleteRole(TypeID);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {
