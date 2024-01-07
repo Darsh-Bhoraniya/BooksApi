@@ -17,7 +17,7 @@ namespace BooksApi.DAL
             try
             {
                 DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_User_SelectAll");
-                List<User_Model> Bookmodel = new List<User_Model>();
+                List<User_Model> user_Models = new List<User_Model>();
                 using (IDataReader dr = sqlDatabase.ExecuteReader(dbCommand))
                 {
                     while (dr.Read())
@@ -27,12 +27,13 @@ namespace BooksApi.DAL
                         User_Model.UserName = dr["UserName"].ToString();
                         User_Model.Email = dr["Email"].ToString();
                         User_Model.Password = (dr["Password"].ToString());
+                        User_Model.PhoneNumber = (dr["PhoneNumber"].ToString());
                         User_Model.RoleID = Convert.ToInt32(dr["RoleID"].ToString());
                         User_Model.Created = Convert.ToDateTime(dr["Created"]); ;
                         User_Model.Modified = Convert.ToDateTime(dr["Modified"]); ;
-                        Bookmodel.Add(User_Model);
+                        user_Models.Add(User_Model);
                     }
-                    return Bookmodel;
+                    return user_Models;
                 }
 
             }
@@ -85,6 +86,7 @@ namespace BooksApi.DAL
                         User_Model.UserName = dr["UserName"].ToString();
                         User_Model.Email = dr["Email"].ToString();
                         User_Model.Password = (dr["Password"].ToString());
+                        User_Model.PhoneNumber = (dr["PhoneNumber"].ToString());
                         User_Model.RoleID = Convert.ToInt32(dr["RoleID"].ToString());
                         User_Model.Created = Convert.ToDateTime(dr["Created"]); ;
                         User_Model.Modified = Convert.ToDateTime(dr["Modified"]); ;
