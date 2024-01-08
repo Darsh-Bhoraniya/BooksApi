@@ -68,13 +68,13 @@ namespace BooksApi.BAL
         #endregion
         #region Update
 
-        public bool Update_User(int BookID, User_Model User_Model)
+        public bool Update_User(User_Model User_Model)
 
         {
             try
             {
 
-                if (User_DALBase.Update_User(BookID, User_Model))
+                if (User_DALBase.Update_User(User_Model))
                 {
                     return true;
                 }

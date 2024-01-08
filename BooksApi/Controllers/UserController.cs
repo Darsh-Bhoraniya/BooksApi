@@ -85,7 +85,7 @@ namespace BooksApi.Controllers
 
         #region Insert
         [HttpPost]
-        public IActionResult Post([FormForm] User_Model User_Model)
+        public IActionResult Post([FromBody] User_Model User_Model)
         {
             bool IsSuccess = User_BALBase.RegisterNewUser(User_Model);
             Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
@@ -105,10 +105,10 @@ namespace BooksApi.Controllers
         #endregion
         #region Update
         [HttpPut]
-        public IActionResult Update(int UserID, [FormForm] User_Model User_Model)
+        public IActionResult Update([FromBody] User_Model User_Model)
         {
-            User_Model.UserID = UserID;
-            bool IsSuccess = User_BALBase.Update_User(UserID, User_Model);
+            //User_Model.UserID = UserID;
+            bool IsSuccess = User_BALBase.Update_User(User_Model);
             Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {

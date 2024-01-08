@@ -113,8 +113,6 @@ namespace BooksApi.DAL
                 sqlDatabase.AddInParameter(dbCommand, "@PhoneNumber", SqlDbType.VarChar, User_Model.PhoneNumber);
                 sqlDatabase.AddInParameter(dbCommand, "@Password", SqlDbType.VarChar, User_Model.Password);
                 sqlDatabase.AddInParameter(dbCommand, "@RoleID", SqlDbType.Int, User_Model.RoleID);
-                sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, User_Model.Created);
-                sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, User_Model.Modified);
 
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
                 {
@@ -132,20 +130,19 @@ namespace BooksApi.DAL
         }
         #endregion
         #region Update User 
-        public bool Update_User(int UserID, User_Model User_Model)
+        public bool Update_User(User_Model User_Model)
         {
             try
             {
-                DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_Book_Master_Update");
+                DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_User_Update");
                 sqlDatabase.AddInParameter(dbCommand, "@UserID", SqlDbType.Int, User_Model.UserID);
                 sqlDatabase.AddInParameter(dbCommand, "@UserName", SqlDbType.VarChar, User_Model.UserName);
                 sqlDatabase.AddInParameter(dbCommand, "@Email", SqlDbType.VarChar, User_Model.Email);
-                sqlDatabase.AddInParameter(dbCommand, "@PhoneNumber", SqlDbType.VarChar, User_Model.PhoneNumber);
                 sqlDatabase.AddInParameter(dbCommand, "@Password", SqlDbType.VarChar, User_Model.Password);
                 sqlDatabase.AddInParameter(dbCommand, "@PhoneNumber", SqlDbType.VarChar, User_Model.PhoneNumber);
                 sqlDatabase.AddInParameter(dbCommand, "@RoleID", SqlDbType.Int, User_Model.RoleID);
                 //sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, User_Model.Created);
-                sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, User_Model.Modified);
+                //sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, User_Model.Modified);
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
                 {
                     return true;
