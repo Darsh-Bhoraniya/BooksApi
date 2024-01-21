@@ -50,11 +50,11 @@ namespace BooksApi.BAL
             }
         }
 
-        public bool UpdateAuthor(int AuthorID, Author_Model author_Model)
+        public bool UpdateAuthor(Author_Model author_Model)
         {
             try
             {
-                if (author_DALBase.UpdateAuthor(AuthorID,author_Model))
+                if (author_DALBase.UpdateAuthor(author_Model))
                 {
                     return true;
                 }

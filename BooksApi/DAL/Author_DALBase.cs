@@ -1,4 +1,5 @@
 ﻿using BooksApi.Model;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql.Configuration;
 using System.Data;
@@ -10,7 +11,7 @@ namespace BooksApi.DAL
     {
         SqlDatabase sqlDatabase = new SqlDatabase(ConnString);
         public List<Author_Model> Getall()
-        {
+            {
             DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_MST_Author_SelectAll");
             List<Author_Model> Author_Model = new List<Author_Model>();
             try
@@ -51,7 +52,7 @@ namespace BooksApi.DAL
                         author_Model.AuthorName = dr["AuthorName"].ToString();
                         author_Model.AuthorEmail = dr["AuthorEmail"].ToString();
                         author_Model.ContactNo = dr["ContactNo"].ToString();
-                        author_Model.Created = Convert.ToDateTime(dr["Created"]);
+                        //author_Model.Created = Convert.ToDateTime(dr["Created"]);
                         author_Model.Modified = Convert.ToDateTime(dr["Modified"]);
                     }
                 }
@@ -70,8 +71,8 @@ namespace BooksApi.DAL
                 sqlDatabase.AddInParameter(dbCommand, "@AuthorName", SqlDbType.VarChar, author_Model.AuthorName);
                 sqlDatabase.AddInParameter(dbCommand, "@AuthorEmail", SqlDbType.VarChar, author_Model.AuthorEmail);
                 sqlDatabase.AddInParameter(dbCommand, "@ContactNo", SqlDbType.VarChar, author_Model.ContactNo);
-                sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, author_Model.Created);
-                sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, author_Model.Modified);
+                //sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, author_Model.Created);
+                //sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, author_Model.Modified);
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
                 {
                     return true;
@@ -86,7 +87,7 @@ namespace BooksApi.DAL
                 return false;
             }
         }
-        public bool UpdateAuthor(int AuthorID, Author_Model author_Model)
+        public bool UpdateAuthor(Author_Model author_Model)
         {
             try
             {
@@ -94,8 +95,8 @@ namespace BooksApi.DAL
                 sqlDatabase.AddInParameter(dbCommand, "@AuthorID", SqlDbType.Int, author_Model.AuthorID);
                 sqlDatabase.AddInParameter(dbCommand, "@AuthorName", SqlDbType.VarChar, author_Model.AuthorName);
                 sqlDatabase.AddInParameter(dbCommand, "@AuthorEmail", SqlDbType.VarChar, author_Model.AuthorEmail);
-                sqlDatabase.AddInParameter(dbCommand, "@ContactNo", SqlDbType.VarChar, author_Model.ContactNo);
-                sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, author_Model.Modified);
+                //sqlDatabase.AddInParameter(dbCommand, "@ContactNo", SqlDbType.VarChar, author_Model.ContactNo);
+                //sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, author_Model.Modified);
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
                 {
                     return true;
@@ -125,7 +126,6 @@ namespace BooksApi.DAL
                 {
                     return false;
                 }
-
             }
             catch (Exception ex)
             {

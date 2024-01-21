@@ -1,4 +1,5 @@
 ﻿using BooksApi.BAL;
+using BooksApi.DAL;
 using BooksApi.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
@@ -14,47 +15,47 @@ namespace BooksApi.Controllers
         public IActionResult Getall()
         {
             List<Author_Model> author_Models = author_BALBase.Getall();
-            Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
+            //Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (author_Models.Count > 0 && author_Models != null)
             {
-                response.Add("Status", true);
-                response.Add("Masseage", "Data Get Succesfully ");
-                response.Add("Data", author_Models);
-                return Ok(response);
+                //response.Add("Status", true);
+                //response.Add("Masseage", "Data Get Succesfully ");
+                //response.Add("Data", author_Models);
+                return Ok(author_Models);
             }
             else
             {
-                response.Add("Status", false);
-                response.Add("Masseage", "Data Not Get Succesfully");
-                response.Add("Data", null);
+                //response.Add("Status", false);
+                //response.Add("Masseage", "Data Not Get Succesfully");
+                //response.Add("Data", null);
             }
-            return NotFound(response);
+            return NotFound(author_Models);
         }
 
 
         [HttpGet("{AuthorID}")]
-        public IActionResult AuthorGetbId(int AuthorID)
+        public IActionResult AuthorGetbyId(int AuthorID)
         {
 
             Author_Model author_Model = author_BALBase.SelectAuthorByPK(AuthorID);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (author_Model.AuthorID != 0)
             {
-                response.Add("Status", true);
-                response.Add("Masseage", "Data Get Succesfully ");
-                response.Add("Data", author_Model);
-                return Ok(response);
+                //response.Add("Status", true);
+                //response.Add("Masseage", "Data Get Succesfully ");
+                //response.Add("Data", author_Model);
+                return Ok(author_Model);
             }
             else
             {
-                response.Add("Status", false);
-                response.Add("Masseage", "Data Not Get Succesfully");
-                response.Add("Data", null);
+                //response.Add("Status", false);
+                //response.Add("Masseage", "Data Not Get Succesfully");
+                //response.Add("Data", null);
             }
-            return NotFound(response);
+            return NotFound(author_Model);
         }
         [HttpPost]
-        public IActionResult Post(Author_Model author_Model)
+        public IActionResult Post([FromBody]Author_Model author_Model)
         {
             bool IsSuccess = author_BALBase.InsertAuthor(author_Model);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
@@ -73,11 +74,11 @@ namespace BooksApi.Controllers
             }
         }
         [HttpPut]
-        public IActionResult Put(Author_Model author_Model ,int AuthorID)
+        public IActionResult Put([FromBody] Author_Model author_Model)
         {
 
-            author_Model.AuthorID = AuthorID;
-            bool IsSuccess = author_BALBase.UpdateAuthor(AuthorID, author_Model);
+            //author_Model.AuthorID = AuthorID;
+            bool IsSuccess = author_BALBase.UpdateAuthor(author_Model);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {
