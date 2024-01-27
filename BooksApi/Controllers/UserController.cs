@@ -2,6 +2,7 @@
 using BooksApi.DAL;
 using BooksApi.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BooksApi.Controllers
 {
@@ -124,5 +125,12 @@ namespace BooksApi.Controllers
             }
         }
         #endregion
+        [HttpPost]
+        public IActionResult Login([FromBody] Login_Model login_Model)
+        {
+            Login_BAL login_BAL = new Login_BAL();
+
+            return Ok(login_BAL.login(login_Model.UserName,login_Model.Password));
+        }
     }
 }
