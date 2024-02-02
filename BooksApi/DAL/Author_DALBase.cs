@@ -90,11 +90,12 @@ namespace BooksApi.DAL
         public bool UpdateAuthor(Author_Model author_Model)
         {
             try
-            {
+                {
                 DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_MST_Author_Update");
                 sqlDatabase.AddInParameter(dbCommand, "@AuthorID", SqlDbType.Int, author_Model.AuthorID);
                 sqlDatabase.AddInParameter(dbCommand, "@AuthorName", SqlDbType.VarChar, author_Model.AuthorName);
                 sqlDatabase.AddInParameter(dbCommand, "@AuthorEmail", SqlDbType.VarChar, author_Model.AuthorEmail);
+                sqlDatabase.AddInParameter(dbCommand, "@ContactNo", SqlDbType.VarChar, author_Model.ContactNo);
                 //sqlDatabase.AddInParameter(dbCommand, "@ContactNo", SqlDbType.VarChar, author_Model.ContactNo);
                 //sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, author_Model.Modified);
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))

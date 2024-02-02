@@ -9,31 +9,34 @@ namespace BooksApi.Controllers
     [Route("api/[Controller]/[Action]")]
     public class BooksController : Controller
     {
+        
         #region Globalobject Of BAL
         Book_BALBase AddBook_BALBas = new Book_BALBase();
         #endregion
 
+
         #region Getall
+        
         [HttpGet]
         public IActionResult Getall()
         {
 
             List<Book_Model> book_Models = AddBook_BALBas.GetAllBoooks();
-            Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
+            //Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
             if (book_Models.Count > 0 && book_Models != null)
             {
-                respon.Add("status", true);
-                respon.Add("Message", "Data found");
-                respon.Add("data", book_Models);
-                return Ok(respon);
+                //respon.Add("status", true);
+                //respon.Add("Message", "Data found");
+                //respon.Add("data", book_Models);
+                return Ok(book_Models);
             }
             else
             {
-                respon.Add("status", false);
-                respon.Add("Message", "Data not found");
-                respon.Add("data", null);
+                //respon.Add("status", false);
+                //respon.Add("Message", "Data not found");
+                //respon.Add("data", null);
             }
-            return NotFound(respon);
+            return NotFound(book_Models);
         }
         #endregion
 
@@ -102,6 +105,8 @@ namespace BooksApi.Controllers
             }
         }
         #endregion
+
+
         #region Update
         [HttpPut]
         public IActionResult Update(int BookID,[FormForm] Book_Model addBook_Model)
@@ -123,5 +128,7 @@ namespace BooksApi.Controllers
             }
         }
         #endregion
+
+
     }
 }
