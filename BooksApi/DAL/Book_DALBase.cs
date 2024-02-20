@@ -9,7 +9,7 @@ namespace BooksApi.DAL
 {
     public class Book_DALBase : DAL_Helper
     {
-        #region AddBook
+        #region Method: Add New Book
         public List<Book_Model> GetallBook()
         {
             try
@@ -46,7 +46,7 @@ namespace BooksApi.DAL
         }
         #endregion
 
-        #region selectbypk
+        #region Method : Select Books By Primary Key
         public Book_Model Book_SelectByPK(int BookID)
         {
             try
@@ -81,7 +81,7 @@ namespace BooksApi.DAL
         }
         #endregion
 
-        #region Delete
+        #region Method: Delete Books 
         public bool PR_Delete_Books(int BookID)
         {
             try
@@ -106,7 +106,7 @@ namespace BooksApi.DAL
         }
         #endregion
 
-        #region Insert
+        #region Method: Insert New Books
         public bool PR_Insert_Books(Book_Model AddBook_Model)
         {
             try
@@ -119,7 +119,7 @@ namespace BooksApi.DAL
                 sqlDatabase.AddInParameter(dbCommand, "@TypeID", SqlDbType.VarChar, AddBook_Model.TypeID);
                 sqlDatabase.AddInParameter(dbCommand, "@Price", SqlDbType.Decimal, AddBook_Model.Price);
                 sqlDatabase.AddInParameter(dbCommand, "@INSBN", SqlDbType.Int, AddBook_Model.INSBN);
-                sqlDatabase.AddInParameter(dbCommand, "@PublishedDate", SqlDbType.DateTime, AddBook_Model.PublishedDate);
+                sqlDatabase.AddInParameter(dbCommand, "@PublishedDate", SqlDbType.Date, AddBook_Model.PublishedDate);
                 sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, AddBook_Model.Created);
                 sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, AddBook_Model.Modified);
 
@@ -138,6 +138,8 @@ namespace BooksApi.DAL
             }
         }
         #endregion
+
+        #region Method :Update Books
         public bool PR_Update_Books(int BookID, Book_Model AddBook_Model)
         {
             try
@@ -151,7 +153,7 @@ namespace BooksApi.DAL
                 sqlDatabase.AddInParameter(dbCommand, "@TypeID", SqlDbType.VarChar, AddBook_Model.TypeID);
                 sqlDatabase.AddInParameter(dbCommand, "@Price", SqlDbType.Decimal, AddBook_Model.Price);
                 sqlDatabase.AddInParameter(dbCommand, "@INSBN", SqlDbType.Int, AddBook_Model.INSBN);
-                sqlDatabase.AddInParameter(dbCommand, "@PublishedDate", SqlDbType.DateTime, AddBook_Model.PublishedDate);
+                sqlDatabase.AddInParameter(dbCommand, "@PublishedDate", SqlDbType.Date, AddBook_Model.PublishedDate);
                 // Update time we donot to add a parameter created
                 //sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, AddBook_Model.Created);
                 sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, AddBook_Model.Modified);
@@ -169,5 +171,6 @@ namespace BooksApi.DAL
                 return false;
             }
         }
+        #endregion
     }
 }

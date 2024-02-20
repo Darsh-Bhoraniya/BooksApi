@@ -17,21 +17,15 @@ namespace BooksApi.Controllers
         public IActionResult Getall()
         {
             List<Role_Model> role_Models = Role_BALBase.Getall();
-            Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
+            //Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (role_Models.Count > 0 && role_Models != null)
             {
-                response.Add("Status", true);
-                response.Add("Masseage", "Data Get Succesfully ");
-                response.Add("Data", role_Models);
-                return Ok(response);
+                //response.Add("Status", true);
+                //response.Add("Masseage", "Data Get Succesfully ");
+                //response.Add("Data", role_Models);
+                return Ok(role_Models);
             }
-            else
-            {
-                response.Add("Status", false);
-                response.Add("Masseage", "Data Not Get Succesfully");
-                response.Add("Data", null);
-            }
-            return NotFound(response);
+            return NotFound(role_Models);
         }
         #endregion
         #region Select By Pk
@@ -40,7 +34,7 @@ namespace BooksApi.Controllers
         {
             Role_Model role_Models = Role_BALBase.SelectRoleByPK(RoleID);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
-            if (role_Models.RoleID !=0)
+            if (role_Models.RoleID != 0)
             {
                 response.Add("Status", true);
                 response.Add("Masseage", "Data Get Succesfully ");
@@ -61,7 +55,7 @@ namespace BooksApi.Controllers
         public IActionResult Post(Role_Model role_Model)
         {
             bool IsSuccess = Role_BALBase.InsertNewRole(role_Model);
-            Dictionary<string,dynamic> response = new Dictionary<string,dynamic>();
+            Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {
                 response.Add("Status", true);
@@ -79,10 +73,10 @@ namespace BooksApi.Controllers
         #endregion
         #region Update
         [HttpPut]
-        public IActionResult Put(int RoleID,Role_Model role_Model)
+        public IActionResult Put(int RoleID, Role_Model role_Model)
         {
             role_Model.RoleID = RoleID;
-            bool IsSuccess = Role_BALBase.UpdateRole(RoleID,role_Model);
+            bool IsSuccess = Role_BALBase.UpdateRole(RoleID, role_Model);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {
