@@ -23,10 +23,10 @@ namespace BooksApi.Controllers
             Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
             if (User_Model.Count > 0 && User_Model != null)
             {
-                respon.Add("status", true);
+     /*           respon.Add("status", true);
                 respon.Add("Message", "Users found");
-                respon.Add("data", User_Model);
-                return Ok(respon);
+                respon.Add("data", User_Model);*/
+                return Ok(User_Model);
             }
             else
             {
@@ -47,10 +47,10 @@ namespace BooksApi.Controllers
             Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
             if (User_Model.UserID != 0)
             {
-                respon.Add("status", true);
+              /*  respon.Add("status", true);
                 respon.Add("Message", "Data found");
-                respon.Add("data", User_Model);
-                return Ok(respon);
+                respon.Add("data", User_Model);*/
+                return Ok(User_Model);
             }
             else
             {

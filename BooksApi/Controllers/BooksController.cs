@@ -48,10 +48,10 @@ namespace BooksApi.Controllers
             Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
             if (AddBook_Model.BookID != 0)
             {
-                respon.Add("status", true);
+                /*respon.Add("status", true);
                 respon.Add("Message", "Data found");
-                respon.Add("data", AddBook_Model);
-                return Ok(respon);
+                respon.Add("data", AddBook_Model);*/
+                return Ok(AddBook_Model);
             }
             else
             {
@@ -109,10 +109,10 @@ namespace BooksApi.Controllers
 
         #region Update
         [HttpPut]
-        public IActionResult Update(int BookID,[FormForm] Book_Model addBook_Model)
+        public IActionResult Update([FormForm] Book_Model addBook_Model)
         {
-            addBook_Model.BookID=BookID;
-            bool IsSuccess = AddBook_BALBas.PR_Update_Books(BookID, addBook_Model);
+
+            bool IsSuccess = AddBook_BALBas.PR_Update_Books(addBook_Model);
             Dictionary<string, dynamic> respon = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {

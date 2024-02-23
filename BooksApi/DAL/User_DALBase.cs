@@ -61,7 +61,6 @@ namespace BooksApi.DAL
                 {
                     return false;
                 }
-
             }
             catch (Exception ex)
             {

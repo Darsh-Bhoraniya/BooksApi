@@ -120,9 +120,9 @@ namespace BooksApi.DAL
                 sqlDatabase.AddInParameter(dbCommand, "@Price", SqlDbType.Decimal, AddBook_Model.Price);
                 sqlDatabase.AddInParameter(dbCommand, "@INSBN", SqlDbType.Int, AddBook_Model.INSBN);
                 sqlDatabase.AddInParameter(dbCommand, "@PublishedDate", SqlDbType.Date, AddBook_Model.PublishedDate);
-                sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, AddBook_Model.Created);
+            /*    sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, AddBook_Model.Created);
                 sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, AddBook_Model.Modified);
-
+*/
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
                 {
                     return true;
@@ -140,7 +140,7 @@ namespace BooksApi.DAL
         #endregion
 
         #region Method :Update Books
-        public bool PR_Update_Books(int BookID, Book_Model AddBook_Model)
+        public bool PR_Update_Books(Book_Model AddBook_Model)
         {
             try
             {
@@ -156,7 +156,7 @@ namespace BooksApi.DAL
                 sqlDatabase.AddInParameter(dbCommand, "@PublishedDate", SqlDbType.Date, AddBook_Model.PublishedDate);
                 // Update time we donot to add a parameter created
                 //sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, AddBook_Model.Created);
-                sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, AddBook_Model.Modified);
+            /*    sqlDatabase.AddInParameter(dbCommand, "@Modified", SqlDbType.DateTime, AddBook_Model.Modified);*/
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
                 {
                     return true;

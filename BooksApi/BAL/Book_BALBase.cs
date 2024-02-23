@@ -73,13 +73,13 @@ namespace BooksApi.BAL
 
         #region Update
 
-        public bool PR_Update_Books(int BookID,Book_Model addBook_Model)
+        public bool PR_Update_Books(Book_Model addBook_Model)
 
         {
             try
             {
 
-                if (AddBook_DALBase.PR_Update_Books(BookID,addBook_Model))
+                if (AddBook_DALBase.PR_Update_Books(addBook_Model))
                 {
                     return true;
                 }

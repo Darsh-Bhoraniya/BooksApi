@@ -18,17 +18,17 @@ namespace BooksApi.Controllers
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (bookType_Models.Count > 0 && bookType_Models != null)
             {
-                response.Add("Status", true);
+                /*response.Add("Status", true);
                 response.Add("Masseage", "Data Get Succesfully ");
-                response.Add("Data", bookType_Models);
-                return Ok(response);
+                response.Add("Data", bookType_Models);*/
+                return Ok(bookType_Models);
             }
-            else
+         /*   else
             {
                 response.Add("Status", false);
                 response.Add("Masseage", "Data Not Get Succesfully");
                 response.Add("Data", null);
-            }
+            }*/
             return NotFound(response);
         }
 

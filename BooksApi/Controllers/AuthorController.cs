@@ -23,12 +23,6 @@ namespace BooksApi.Controllers
                 //response.Add("Data", author_Models);
                 return Ok(author_Models);
             }
-            else
-            {
-                //response.Add("Status", false);
-                //response.Add("Masseage", "Data Not Get Succesfully");
-                //response.Add("Data", null);
-            }
             return NotFound(author_Models);
         }
 
