@@ -41,10 +41,10 @@ namespace BooksApi.Controllers
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (bookType_Model.TypeID != 0)
             {
-                response.Add("Status", true);
+             /*   response.Add("Status", true);
                 response.Add("Masseage", "Data Get Succesfully ");
-                response.Add("Data", bookType_Model);
-                return Ok(response);
+                response.Add("Data", bookType_Model)*/;
+                return Ok(bookType_Model);
             }
             else
             {
@@ -74,11 +74,11 @@ namespace BooksApi.Controllers
             }
         }
         [HttpPut]
-        public IActionResult Put(BookType_Model bookType_Model, int TypeID)
+        public IActionResult Put(BookType_Model bookType_Model)
         {
 
-            bookType_Model.TypeID = TypeID;
-            bool IsSuccess = booksType_BALBase.UpdateRole(TypeID, bookType_Model);
+            /*bookType_Model.TypeID = TypeID*/;
+            bool IsSuccess = booksType_BALBase.UpdateRole( bookType_Model);
             Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
             if (IsSuccess)
             {

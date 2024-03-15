@@ -51,11 +51,11 @@ namespace BooksApi.BAL
             }
         }
 
-        public bool UpdateRole(int TypeID, BookType_Model bookType_Model)
+        public bool UpdateRole( BookType_Model bookType_Model)
         {
             try
             {
-                if (BookType_DALBase.UpdateBookType(TypeID, bookType_Model))
+                if (BookType_DALBase.UpdateBookType( bookType_Model))
                 {
                     return true;
                 }

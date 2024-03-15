@@ -64,8 +64,8 @@ namespace BooksApi.DAL
             {
                 DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_BooksType_Insert");
                 sqlDatabase.AddInParameter(dbCommand, "@TypeName", SqlDbType.VarChar, bookType_Model.TypeName);
-                sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, bookType_Model.Created);
-                sqlDatabase.AddInParameter(dbCommand, "@modified", SqlDbType.DateTime, bookType_Model.modified);
+              /*  sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, bookType_Model.Created);*/
+                //sqlDatabase.AddInParameter(dbCommand, "@modified", SqlDbType.DateTime, bookType_Model.modified);
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
                 {
                     return true;
@@ -80,15 +80,15 @@ namespace BooksApi.DAL
                 return false;
             }
         }
-        public bool UpdateBookType(int TypeID, BookType_Model bookType_Model)
+        public bool UpdateBookType(BookType_Model bookType_Model)
         {
             try
             {
-                DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_MST_Author_Update");
+                DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_BooksType_Update");
                 sqlDatabase.AddInParameter(dbCommand, "@TypeID", SqlDbType.Int, bookType_Model.TypeID);
                 sqlDatabase.AddInParameter(dbCommand, "@TypeName", SqlDbType.VarChar, bookType_Model.TypeName);
-                sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, bookType_Model.Created);
-                sqlDatabase.AddInParameter(dbCommand, "@modified", SqlDbType.DateTime, bookType_Model.modified);
+                /*      sqlDatabase.AddInParameter(dbCommand, "@Created", SqlDbType.DateTime, bookType_Model.Created);*/
+                /*sqlDatabase.AddInParameter(dbCommand, "@modified", SqlDbType.DateTime, bookType_Model.modified);*/
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
                 {
                     return true;
@@ -108,7 +108,7 @@ namespace BooksApi.DAL
         {
             try
             {
-                DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_MST_Author_Delete");
+                DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_BooksType_Delete");
                 sqlDatabase.AddInParameter(dbCommand, "@TypeID", SqlDbType.Int, TypeID);
                 if (Convert.ToBoolean(sqlDatabase.ExecuteNonQuery(dbCommand)))
                 {
