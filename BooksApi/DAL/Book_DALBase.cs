@@ -9,7 +9,7 @@ namespace BooksApi.DAL
 {
     public class Book_DALBase : DAL_Helper
     {
-        #region Method: Add New Book
+        #region Method: Retrive All  Book
         public List<Book_Model> GetallBook()
         {
             try
@@ -25,7 +25,7 @@ namespace BooksApi.DAL
                         book_Model.BookID = Convert.ToInt32(dr["BookID"].ToString());
                         book_Model.BookName = dr["BookName"].ToString();
                         book_Model.BookTitle = dr["BookTitle"].ToString();
-                        book_Model.BookWiseAuthorID = Convert.ToInt32(dr["BooKWiseAuthorID"].ToString());
+                        book_Model.AuthorID = Convert.ToInt32(dr["AuthorID"].ToString());
                         book_Model.TypeID = Convert.ToInt32(dr["TypeID"].ToString());
                         book_Model.Price = Convert.ToDouble(dr["Price"].ToString());
                         book_Model.INSBN = Convert.ToInt32(dr["INSBN"].ToString());
@@ -62,7 +62,7 @@ namespace BooksApi.DAL
                         AddBook_Model.BookID = Convert.ToInt32(dr["BookID"].ToString());
                         AddBook_Model.BookName = dr["BookName"].ToString();
                         AddBook_Model.BookTitle = dr["BookTitle"].ToString();
-                        AddBook_Model.BookWiseAuthorID = Convert.ToInt32(dr["BooKWiseAuthorID"].ToString());
+                        AddBook_Model.AuthorID = Convert.ToInt32(dr["AuthorID"].ToString());
                         AddBook_Model.TypeID = Convert.ToInt32(dr["TypeID"].ToString());
                         AddBook_Model.Price = Convert.ToDouble(dr["Price"].ToString());
                         AddBook_Model.INSBN = Convert.ToInt32(dr["INSBN"].ToString());
@@ -115,7 +115,7 @@ namespace BooksApi.DAL
                 DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_Book_Master_Insert");
                 sqlDatabase.AddInParameter(dbCommand, "@BookName", SqlDbType.VarChar, AddBook_Model.BookName);
                 sqlDatabase.AddInParameter(dbCommand, "@BookTitle", SqlDbType.VarChar, AddBook_Model.BookTitle);
-                sqlDatabase.AddInParameter(dbCommand, "@BooKWiseAuthorID", SqlDbType.Int, AddBook_Model.BookWiseAuthorID);
+                sqlDatabase.AddInParameter(dbCommand, "@AuthorID", SqlDbType.Int, AddBook_Model.AuthorID);
                 sqlDatabase.AddInParameter(dbCommand, "@TypeID", SqlDbType.VarChar, AddBook_Model.TypeID);
                 sqlDatabase.AddInParameter(dbCommand, "@Price", SqlDbType.Decimal, AddBook_Model.Price);
                 sqlDatabase.AddInParameter(dbCommand, "@INSBN", SqlDbType.Int, AddBook_Model.INSBN);
@@ -149,7 +149,7 @@ namespace BooksApi.DAL
                 sqlDatabase.AddInParameter(dbCommand, "@BookID", SqlDbType.Int, AddBook_Model.BookID);
                 sqlDatabase.AddInParameter(dbCommand, "@BookName", SqlDbType.VarChar, AddBook_Model.BookName);
                 sqlDatabase.AddInParameter(dbCommand, "@BookTitle", SqlDbType.VarChar, AddBook_Model.BookTitle);
-                sqlDatabase.AddInParameter(dbCommand, "@BooKWiseAuthorID", SqlDbType.Int, AddBook_Model.BookWiseAuthorID);
+                sqlDatabase.AddInParameter(dbCommand, "@AuthorID", SqlDbType.Int, AddBook_Model.AuthorID);
                 sqlDatabase.AddInParameter(dbCommand, "@TypeID", SqlDbType.VarChar, AddBook_Model.TypeID);
                 sqlDatabase.AddInParameter(dbCommand, "@Price", SqlDbType.Decimal, AddBook_Model.Price);
                 sqlDatabase.AddInParameter(dbCommand, "@INSBN", SqlDbType.Int, AddBook_Model.INSBN);
