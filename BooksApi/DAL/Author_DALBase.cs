@@ -133,5 +133,29 @@ namespace BooksApi.DAL
                 return false;
             }
         }
+        public List<AuthorComboBox> AuthorComboBox()
+        {
+            // Getall Author and Author Id  From the Database
+            DbCommand dbCommand = sqlDatabase.GetStoredProcCommand("PR_AuthorCombobox");
+            List<AuthorComboBox> authorCombos = new List<AuthorComboBox>();
+            try
+            {
+                using (IDataReader dr = sqlDatabase.ExecuteReader(dbCommand))
+                {
+                    while (dr.Read())
+                    {
+                        AuthorComboBox authorComboBox = new AuthorComboBox();
+                        authorComboBox.AuthorID = Convert.ToInt32(@dr["AuthorID"]);
+                        authorComboBox.AuthorName = dr["AuthorName"].ToString();
+                        authorCombos.Add(authorComboBox);
+                    }
+                    return authorCombos;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

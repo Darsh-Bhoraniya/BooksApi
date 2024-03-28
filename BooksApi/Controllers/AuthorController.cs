@@ -25,7 +25,20 @@ namespace BooksApi.Controllers
             }
             return NotFound(author_Models);
         }
-
+        [HttpGet]
+        public IActionResult AuthorComboBox()
+        {
+            List<AuthorComboBox> author_Models = author_BALBase.AuthorComboBox();
+            //Dictionary<string, dynamic> response = new Dictionary<string, dynamic>();
+            if (author_Models.Count > 0 && author_Models != null)
+            {
+                //response.Add("Status", true);
+                //response.Add("Masseage", "Data Get Succesfully ");
+                //response.Add("Data", author_Models);
+                return Ok(author_Models);
+            }
+            return NotFound(author_Models);
+        }
 
         [HttpGet("{AuthorID}")]
         public IActionResult AuthorGetbyId(int AuthorID)

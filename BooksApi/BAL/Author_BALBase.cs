@@ -18,6 +18,18 @@ namespace BooksApi.BAL
                 return null;
             }
         }
+        public List<AuthorComboBox> AuthorComboBox()
+        {
+            try
+            {
+                List<AuthorComboBox> authorComboBox = author_DALBase.AuthorComboBox();
+                return authorComboBox;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public Author_Model SelectAuthorByPK(int AuthorID)
         {
             try

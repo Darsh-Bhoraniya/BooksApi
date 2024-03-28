@@ -11,4 +11,9 @@ namespace BooksApi.Model
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
     }
+    public class AuthorComboBox
+    {
+        public int AuthorID { get; set; }
+        public string AuthorName { get; set; }
+    }
 }
